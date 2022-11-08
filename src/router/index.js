@@ -58,6 +58,24 @@ const routes = [
     path: '/faq/:no',  //  : 을 이용하여 입력
     name: 'faq-detail',
     component: () => import( '../components/Faq/FaqDetail.vue')
+  },
+  {
+    // Customer 목록 페이지
+    path: '/customer', 
+    name: 'customer',
+    component: () => import( '../components/customer/CustomerList.vue')
+  },
+  {
+    // faq 추가 페이지
+    path: '/add/customer', 
+    name: 'add-customer',
+    component: () => import( '../components/customer/AddCustomer.vue')
+  },
+  {
+    // faq 상세 목록 페이지
+    path: '/customer/:cid',  //  : 을 이용하여 입력
+    name: 'customer-detail',
+    component: () => import( '../components/customer/CustomerDetail.vue')
   }
   
 ]

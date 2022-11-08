@@ -52,6 +52,22 @@
           </ul>
         </li>
 
+        <!-- 대메뉴 #3 : Customer -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            href="#"
+            role="button"
+            aria-expanded="false"
+            >Customer Info</a
+          >
+          <ul class="dropdown-menu">
+            <li><router-link to="/Customer" class="dropdown-item">Customer</router-link></li>
+            <li><router-link to="/add/Customer" class="dropdown-item">Add</router-link></li>
+          </ul>
+        </li>
+
       </div>
     </nav>
 

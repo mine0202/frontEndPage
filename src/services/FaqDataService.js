@@ -3,9 +3,9 @@ import http from "../http-common";
 
 class FaqDataService {
     // 모든 FAQ 정보 조회 함수
-    getAll() {
+    getAll(title, page, size) {
         // get 방식 통신 요청 -> @GetMapping("/api/faq")
-        return http.get("/faq");
+        return http.get(`/faq?title=${title}&page=${page}&size=${size}`);
     }
     // title 로 조회 요청 함수
         // get 방식 통신 요청 -> @GetMapping("/api/faq/{no}"), @PathVariable
@@ -40,9 +40,9 @@ class FaqDataService {
     // title  검색 요청 함수
     //  쿼리 스트링 방식 url :  ?변수명=값&변수명2=값2...
     // get 방식 통신 요청 -> @GetMapping("/api/faq") , 쿼리스트링이라서 @RequestParam  사용함 
-    findByTitle( title){
-        return http.get(`/faq?title=${title}`); 
-    }
+    // findByTitle( title){
+    //     return http.get(`/faq?title=${title}`); 
+    // }
 
 }
 

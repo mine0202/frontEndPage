@@ -2,10 +2,11 @@
 import http from "../http-common";
 
 class EmpDataService {
-    // 모든 사원정보 조회 함수
-    getAll() {
+    
+    // 모든 사원정보 또는 사원명으로  조회 함수
+    getAll(ename, page, size) {
         // get 방식 통신 요청 -> @GetMapping("/api/emp")
-        return http.get("/emp");
+        return http.get(`/emp?ename=${ename}&page=${page}&size=${size}`);
     }
     // 사원번호로 조회 요청 함수
         // get 방식 통신 요청 -> @GetMapping("/api/emp/{eno}"), @PathVariable
@@ -37,12 +38,7 @@ class EmpDataService {
         return http.delete("/emp/all");
     }
 
-    // 사원명  검색 요청 함수
-    //  쿼리 스트링 방식 url :  ?변수명=값&변수명2=값2...
-    // get 방식 통신 요청 -> @GetMapping("/api/emp") , 쿼리스트링이라서 @RequestParam  사용함 
-    findByEname( ename){
-        return http.get(`/emp?ename=${ename}`);
-    }
+   
 
 }
 
