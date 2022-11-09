@@ -78,6 +78,7 @@ export default {
   },
   
     methods: {
+
       saveCustomer(){
         let data = {
         email: this.customer.email,
@@ -98,6 +99,8 @@ export default {
         console.log(e);
       })
       },
+
+      // 양식 초기화
       newCustomer(){
         this.submitted=false;
         this.customer={}

@@ -52,7 +52,7 @@
           </ul>
         </li>
 
-        <!-- 대메뉴 #3 : Customer -->
+        <!-- 대메뉴 #4 : Customer -->
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -63,8 +63,24 @@
             >Customer Info</a
           >
           <ul class="dropdown-menu">
-            <li><router-link to="/Customer" class="dropdown-item">Customer</router-link></li>
-            <li><router-link to="/add/Customer" class="dropdown-item">Add</router-link></li>
+            <li><router-link to="/customer" class="dropdown-item">Customer</router-link></li>
+            <li><router-link to="/add/customer" class="dropdown-item">Add</router-link></li>
+          </ul>
+        </li>
+
+        <!-- 대메뉴 #5 : Qna -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            href="#"
+            role="button"
+            aria-expanded="false"
+            >Qna Info</a
+          >
+          <ul class="dropdown-menu">
+            <li><router-link to="/qna" class="dropdown-item">Qna</router-link></li>
+            <li><router-link to="/add/qna" class="dropdown-item">Add</router-link></li>
           </ul>
         </li>
 

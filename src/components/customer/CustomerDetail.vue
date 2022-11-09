@@ -37,11 +37,27 @@ export default {
     }
   },
   methods: {
+
+    
+    // 부서번호로 조회요청하는 함수
+    getCustomer(cid){
+        CustomerDataService.get(cid)
+        .then(response=>{
+            // 스프링부트에서 결과를 리턴함 ( 부서 객체 )
+            this.currentCustomer = response.data;  // data 는 객체로 넘어옴
+            console.log(response.data);
+        })
+        .catch(e=>{
+            console.log(e);
+        });
+    },
+
+
     updateCustomer(){
       CustomerDataService.update(this.currentCustomer.cid, this.currentCustomer)
                 .then(response => {
                     console.log(response.data);
-                    this.message ="The Dept was updated successfully"
+                    this.message ="The Customer was updated successfully"
                 })
                 .catch(e => {
                     console.log(e);
@@ -52,12 +68,16 @@ export default {
                 .then(response => {
                     console.log(response.data);
                     // 첫페이지 강제이동
-                    this.$router.push("/dept");
+                    this.$router.push("/customer");
                 })
                 .catch(e => {
                     console.log(e);
                 })
     }
+  },
+  mounted() {
+    this.message='';
+    this.getCustomer(this.$route.params.cid)
   },
 }
 </script>

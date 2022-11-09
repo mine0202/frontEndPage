@@ -66,11 +66,6 @@ export default {
     data() {
         return {
             customer:[],
-            // email:"",   필요없음
-            // phone:"",
-            // lastName:"",
-            // firstName:"",
-            // cid:0,
             searchEmail:"",
 
                     
@@ -98,6 +93,11 @@ export default {
             this.retrieveCustomer();  // 재조회
         },
 
+        // 함수명 : retrieveCustomer()
+        // 매개변수 : this.searchEmail ( email 검색어 )
+        //           this.page ( 현재 페이지 번호 )
+        //           this.pageSize (  페이지 당 개수)
+        // 리턴값 : 없음
         retrieveCustomer() {
         // getAll() 변경 getAll(dname, page, size) , page는 0번부터 시작하므로 -1 해줌
             CustomerDataService.getAll( this.searchEmail, this.page-1, this.pageSize)
@@ -105,7 +105,7 @@ export default {
             //  axios 성공하면  .then  결과전송됨
             .then(response => {
 
-            // this.dept = response.data;  data 에 4가지(dept, totalItems, ...) 정보가 들어오므로 변경해줌
+            // this.customer = response.data;  data 에 4가지(customer, totalItems, ...) 정보가 들어오므로 변경해줌
             //  let 이나 const  {속성명, 속성명2} = 데이터 객체 배열 ( 모던 자바 문법 구조분해할당)
             const {customer, totalItems } = response.data; // springboot 의 전송된 맵 정보
             this.customer = customer;        // 스프링부트에서 전송한 데이터
@@ -130,14 +130,5 @@ export default {
 </script>
 
 <style>
-.list {
-  text-align: left;
-  max-width: 750px;
-  margin: auto;
-}
 
-.dept {
-  color: pink;
-  font-weight: bold;
-}
 </style>

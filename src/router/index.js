@@ -63,19 +63,37 @@ const routes = [
     // Customer 목록 페이지
     path: '/customer', 
     name: 'customer',
-    component: () => import( '../components/customer/CustomerList.vue')
+    component: () => import( '../components/Customer/CustomerList.vue')
   },
   {
-    // faq 추가 페이지
+    // Customer 추가 페이지
     path: '/add/customer', 
     name: 'add-customer',
-    component: () => import( '../components/customer/AddCustomer.vue')
+    component: () => import( '../components/Customer/AddCustomer.vue')
   },
   {
-    // faq 상세 목록 페이지
+    // Customer 상세 목록 페이지
     path: '/customer/:cid',  //  : 을 이용하여 입력
     name: 'customer-detail',
-    component: () => import( '../components/customer/CustomerDetail.vue')
+    component: () => import( '../components/Customer/CustomerDetail.vue')
+  },
+  {
+    // Qna 목록 페이지
+    path: '/qna', 
+    name: 'qna',
+    component: () => import( '../components/Qna/QnaList.vue')
+  },
+  {
+    // Qna 추가 페이지
+    path: '/add/qna', 
+    name: 'add-qna',
+    component: () => import( '../components/Qna/AddQna.vue')
+  },
+  {
+    // Qna 상세 목록 페이지
+    path: '/qna/:qno',  //  : 을 이용하여 입력
+    name: 'qna-detail',
+    component: () => import( '../components/Qna/QnaDetail.vue')
   }
   
 ]

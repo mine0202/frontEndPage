@@ -191,6 +191,7 @@ export default {
       this.currentDept = data;
       this.currentIndex = index;
     },
+    
     // axios 모든 부서 정보 삭제 요청함수 
     removeAllDept() {
       DeptDataService.deleteAll()
