@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <router-link to="/" class="navbar-brand">SimpleDMS</router-link>
+      <router-link to="/" class="navbar-brand ms-3">SimpleDMS</router-link>
       <div class="navbar-nav mr-auto">
 
         <!-- 대메뉴 #1 : 부서정보 -->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown ms-2">
           <a
             class="nav-link dropdown-toggle"
             data-bs-toggle="dropdown"
@@ -21,7 +21,7 @@
         </li>
 
         <!-- 대메뉴 #2 : 사원정보 -->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown ms-2">
           <a
             class="nav-link dropdown-toggle"
             data-bs-toggle="dropdown"
@@ -37,7 +37,7 @@
         </li>
 
         <!-- 대메뉴 #3 : Faq -->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown ms-2">
           <a
             class="nav-link dropdown-toggle"
             data-bs-toggle="dropdown"
@@ -53,7 +53,7 @@
         </li>
 
         <!-- 대메뉴 #4 : Customer -->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown ms-2">
           <a
             class="nav-link dropdown-toggle"
             data-bs-toggle="dropdown"
@@ -69,7 +69,7 @@
         </li>
 
         <!-- 대메뉴 #5 : Qna -->
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown ms-2">
           <a
             class="nav-link dropdown-toggle"
             data-bs-toggle="dropdown"
@@ -82,6 +82,10 @@
             <li><router-link to="/qna" class="dropdown-item">Qna</router-link></li>
             <li><router-link to="/add/qna" class="dropdown-item">Add</router-link></li>
           </ul>
+        </li>
+        <!-- 대메뉴 #6 : FileDb Upload -->
+          <li class="nav-item ms-2">
+          <a class="nav-link" aria-current="page" href="/fileDb">FileDb Upload</a>
         </li>
 
       </div>

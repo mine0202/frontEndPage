@@ -94,6 +94,12 @@ const routes = [
     path: '/qna/:qno',  //  : 을 이용하여 입력
     name: 'qna-detail',
     component: () => import( '../components/Qna/QnaDetail.vue')
+  },
+  {
+    // FileDb Upload 목록 페이지
+    path: '/fileDb', 
+    name: 'fileDb',
+    component: () => import( '../components/fileDb/fileDbUpload.vue')
   }
   
 ]
