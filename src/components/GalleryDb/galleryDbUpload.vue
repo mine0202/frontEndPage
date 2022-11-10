@@ -4,9 +4,9 @@
         <div class="col-md-8">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Search by title" v-model="searchTitle"
-                    @keyup.enter="retrieveFileDb" />
+                    @keyup.enter="retrieveGalleryDb" />
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" @click="page = 1; retrieveFileDb()">
+                    <button class="btn btn-outline-secondary" type="button" @click="page = 1; retrieveGalleryDb()">
                         Search
                     </button>
                 </div>
@@ -45,19 +45,11 @@
 
                 <!-- 이미지명 입력 박스 시작-->
                 <div class="mb-3 col-md-5">
-                    <label for="fileTitle" class="form-label">이미지명</label>
-                    <input type="text" class="form-control" id="fileTitle" required name="fileTitle"
-                        v-model="fileTitle" />
+                    <label for="galleryTitle" class="form-label">갤러리 이름</label>
+                    <input type="text" class="form-control" id="galleryTitle" required  name="galleryTitle" 
+                        v-model="galleryTitle" />
                 </div>
                 <!-- 이미지명 입력 박스 끝-->
-
-                <!-- 이미지 내용 입력 박스 시작 -->
-                <div class="mb-3 col-md-5">
-                    <label for="fileContent" class="form-label">내용</label>
-                    <input type="text" class="form-control" id="fileContent" required name="fileContent"
-                        v-model="fileContent" />
-                </div>
-                <!-- 이미지 내용 입력 박스 끝 -->
 
                 <!-- 이미지 선택 상자 시작 -->
                 <div class="mb-3 col-md-5">
@@ -72,7 +64,7 @@
                 <!-- upload 버튼 : insert 문 실행 시작 -->
                 <div class="mb-3">
                     <!-- <!— 서버에 insert 문 호출 —> -->
-                    <button class="btn btn-success btn-sm float-left" :disabled="!currentImage" @click="upload">
+                    <button type="submit" class="btn btn-success btn-sm float-left" :disabled="!currentImage"  @click="upload">
                         Upload
                     </button>
                 </div>
@@ -101,15 +93,15 @@
         <!-- <!— 쇼핑 카트 형태 디자인 시작 —> -->
         <!-- <!— v-for 시작 —> -->
         <div class="row">
-            <div class="col-sm-4 mt-3" v-for="(data, index) in fileDb" :key="index">
+            <div class="col-sm-4 mt-3" v-for="(data, index) in galleryDb" :key="index">
                 <div class="card">
                     <img :src="data.fileUrl" class="card-img-top" alt="강의" />
                     <div class="card-body">
-                        <h5 class="card-title">{{ data.fileTitle }}</h5>
-                        <p class="card-text">
+                        <h5 class="card-title">{{ data.galleryTitle }}</h5>
+                        <!-- <p class="card-text">
                             {{ data.fileContent }}
-                        </p>
-                        <a  @click="deleteImage(data.fid)">
+                        </p> -->
+                        <a  @click="deleteImage(data.gid)">
                             <!-- <!— <i class="fas fa-trash" /> —> -->
                             <button type="button" class="btn btn-outline-danger">Delete</button>
                         </a>
@@ -122,7 +114,7 @@
 </template>
 
 <script>
-import FileDbDataService from '@/services/FileDbDataService';
+import GalleryDbDataService from '@/services/GalleryDbDataService';
 
 export default {
     data() {
@@ -131,11 +123,10 @@ export default {
             previewImage: undefined,   // 미리보기 이미지
             searchTitle: "",           // 이미지 명으로 검색하는 변수
             message: "",               // 서버쪽 메세지를 저장할 변수
-            fileDb: [],                 // 이미지 객체 배열
+            galleryDb: [],                 // 이미지 객체 배열
 
-            // 스프링 부트에 요청할 변수, 이미지명(fileTitle) , 내용 (fileContent)
-            fileTitle: "",
-            fileContent: "",
+            // 스프링 부트에 요청할 변수, 이미지명(galleryTitle) 
+            galleryTitle: "",
 
             // 페이징 변수
             page: 1,
@@ -148,12 +139,12 @@ export default {
     methods: {
 
         // 조회함수
-        retrieveFileDb() {
-            FileDbDataService.getFiles(this.searchTitle, this.page - 1, this.pageSize)
+        retrieveGalleryDb() {
+            GalleryDbDataService.getFiles(this.searchTitle, this.page - 1, this.pageSize)
                 //  axios 성공하면  .then  결과전송됨
                 .then(response => {
-                    const { fileDb, totalItems } = response.data;
-                    this.fileDb = fileDb;
+                    const { galleryDb, totalItems } = response.data;
+                    this.galleryDb = galleryDb;
                     this.count = totalItems;
                     console.log(response.data);
                 })
@@ -177,9 +168,14 @@ export default {
 
         //    upload 함수
         upload() {
-            FileDbDataService.upload(
-                this.fileTitle,
-                this.fileContent,
+            if(this.galleryTitle==""){
+                alert("갤러리 이름을 입력하세요");
+            }
+            else{
+
+                GalleryDbDataService.upload(
+                this.galleryTitle,
+                // this.fileContent,
                 this.currentImage
             )
                 .then(response => {
@@ -187,14 +183,14 @@ export default {
                     this.message = response.data.message;
 
                     // 잘 들어갔는지 axios 함수로 화면에 재조회
-                    return FileDbDataService.getFiles(
+                    return GalleryDbDataService.getFiles(
                         this.searchTitle, this.page - 1, this.pageSize
                     )
                 })
                 // 재조회가 성공하면 실행되는 then()
                 .then(response2 => {
-                    const { fileDb, totalItems } = response2.data;
-                    this.fileDb = fileDb;
+                    const { galleryDb, totalItems } = response2.data;
+                    this.galleryDb = galleryDb;
                     this.count = totalItems;
                     console.log(response2.data);
                 })
@@ -204,6 +200,7 @@ export default {
                     this.message = "Could not upload the image!" + e;
                     this.currentImage = undefined;  // 초기화
                 })
+            }
         },
 
         // 파일 선택 상자에서 선택한 이미지를 저장하는 함수
@@ -219,14 +216,14 @@ export default {
         },
 
 
-        deleteImage(fid) {
-            FileDbDataService.deleteFiles(fid)
+        deleteImage(gid) {
+            GalleryDbDataService.deleteFiles(gid)
             .then(response=>{
                 console.log(response);
                 this.message="정상적으로 삭제되었습니다.";
 
                 // 삭제후 재조회
-                this.retrieveFileDb();
+                this.retrieveGalleryDb();
             })
             .catch(e=>{
                 console.log(e);
@@ -237,7 +234,7 @@ export default {
 
     },
     mounted() {
-        this.retrieveFileDb();
+        this.retrieveGalleryDb();
     },
 
 }

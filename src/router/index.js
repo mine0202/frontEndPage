@@ -100,6 +100,12 @@ const routes = [
     path: '/fileDb', 
     name: 'fileDb',
     component: () => import( '../components/fileDb/fileDbUpload.vue')
+  },
+  {
+    // GalleryDb Upload 목록 페이지
+    path: '/galleryDb', 
+    name: 'galleryDb',
+    component: () => import( '../components/GalleryDb/galleryDbUpload.vue')
   }
   
 ]

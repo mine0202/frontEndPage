@@ -88,6 +88,11 @@
           <a class="nav-link" aria-current="page" href="/fileDb">FileDb Upload</a>
         </li>
 
+        <!-- 대메뉴 #7 : GalleryDb Upload -->
+          <li class="nav-item ms-2">
+          <a class="nav-link" aria-current="page" href="/galleryDb">GalleryDb Upload</a>
+        </li>
+
       </div>
     </nav>
 
